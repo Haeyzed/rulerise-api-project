@@ -40,6 +40,7 @@ Route::middleware(['auth:sanctum', 'admin'])->prefix('admin')->group(function ()
         Route::post('/', [GeneralSettingController::class, 'update']);
     });
 
+
     Route::prefix('website-customization')->group(function () {
         Route::get('/{type}', [WebsiteCustomizationController::class, 'show']);
         Route::post('/', [WebsiteCustomizationController::class, 'update']);
