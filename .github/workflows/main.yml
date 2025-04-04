@@ -1,4 +1,4 @@
-name: Deploy Laravel to HostAfrica
+name: 🚀 Deploy Laravel to HostAfrica
 
 on:
   push:
@@ -6,24 +6,25 @@ on:
       - main
 
 jobs:
-  deploy:
+  web-deploy:
+    name: 🎉 Deploy
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: 🚚 Get latest code
         uses: actions/checkout@v4
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.3
+          php-version: 8.4
           extensions: mbstring, bcmath, ctype, json, tokenizer, xml, curl, dom, fileinfo
 
       - name: Install Composer Dependencies
         run: composer install --no-dev --optimize-autoloader
 
-      - name: Deploy via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
