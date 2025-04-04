@@ -1,13 +1,12 @@
-name: Deploy Laravel to HostAfrica cPanel via FTP
+name: Deploy Laravel to HostAfrica
 
 on:
   push:
     branches:
-      - main  # Change this if your main branch is different
+      - main
 
 jobs:
   deploy:
-    name: FTP Deploy Laravel
     runs-on: ubuntu-latest
 
     steps:
@@ -17,9 +16,8 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.3 # Change this to match your server PHP version
+          php-version: 8.3
           extensions: mbstring, bcmath, ctype, json, tokenizer, xml, curl, dom, fileinfo
-          coverage: none
 
       - name: Install Composer Dependencies
         run: composer install --no-dev --optimize-autoloader
@@ -45,7 +43,7 @@ jobs:
             **/storage/framework/views/*
             **/storage/framework/sessions/*
 
-      - name: SSH into Server and Run Post-Deployment Commands
+      - name: SSH into Server and Run Laravel Commands
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.FTP_HOST }}
